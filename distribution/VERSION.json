@@ -1,0 +1,21 @@
+﻿{
+    "PluginInfo": {
+        "Name": "FFXIVAPP.Plugin.Informer",
+        "Version": "3.0.5234.38404",
+        "Files": [
+            {
+                "Name": "FFXIVAPP.Plugin.Informer.dll",
+                "Location": ""
+            },
+            {
+                "Name": "Logo.png",
+                "Location": ""
+            },
+            {
+                "Name": "PluginInfo.xml",
+                "Location": ""
+            }
+        ],
+		"SourceURI": "https://github.com/Icehunter/ffxivapp-plugin-informer/raw/master/distribution/"
+    }
+}
