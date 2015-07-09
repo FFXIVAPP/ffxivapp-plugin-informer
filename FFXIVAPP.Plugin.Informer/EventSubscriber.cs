@@ -105,10 +105,7 @@ namespace FFXIVAPP.Plugin.Informer
                 return;
             }
             var monsterEntities = actorEntitiesEvent.ActorEntities;
-            if (monsterEntities.Any())
-            {
-                XIVInfoViewModel.Instance.CurrentMonsters = new ObservableCollection<ActorEntity>(monsterEntities);
-            }
+            XIVInfoViewModel.Instance.CurrentMonsters = monsterEntities;
         }
 
         private static void OnNewNPCEntries(object sender, ActorEntitiesEvent actorEntitiesEvent)
@@ -122,10 +119,7 @@ namespace FFXIVAPP.Plugin.Informer
                 return;
             }
             var npcEntities = actorEntitiesEvent.ActorEntities;
-            if (npcEntities.Any())
-            {
-                XIVInfoViewModel.Instance.CurrentNPCs = new ObservableCollection<ActorEntity>(npcEntities);
-            }
+            XIVInfoViewModel.Instance.CurrentNPCs = npcEntities;
         }
 
         private static void OnNewPCEntries(object sender, ActorEntitiesEvent actorEntitiesEvent)
@@ -138,11 +132,7 @@ namespace FFXIVAPP.Plugin.Informer
                 return;
             }
             var pcEntities = actorEntitiesEvent.ActorEntities;
-            if (pcEntities.Any())
-            {
-                XIVInfoViewModel.Instance.CurrentUser = pcEntities.First();
-                XIVInfoViewModel.Instance.CurrentPCs = new ObservableCollection<ActorEntity>(pcEntities);
-            }
+            XIVInfoViewModel.Instance.CurrentPCs = pcEntities;
         }
 
         private static void OnNewPlayerEntity(object sender, PlayerEntityEvent playerEntityEvent)
