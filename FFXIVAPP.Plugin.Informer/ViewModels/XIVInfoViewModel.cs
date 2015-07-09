@@ -65,6 +65,10 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             set
             {
                 _currentTarget = value;
+                if (value != null)
+                {
+                    CurrentUser = value.CurrentUser;
+                }
                 RaisePropertyChanged();
             }
         }
@@ -75,6 +79,10 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             set
             {
                 _previousTarget = value;
+                if (value != null)
+                {
+                    CurrentUser = value.CurrentUser;
+                }
                 RaisePropertyChanged();
             }
         }
@@ -95,6 +103,10 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             set
             {
                 _focusTarget = value;
+                if (value != null)
+                {
+                    CurrentUser = value.CurrentUser;
+                }
                 RaisePropertyChanged();
             }
         }
@@ -119,16 +131,13 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             }
         }
 
-        public ActorEntity CurrentUser
+        public ActorEntity CurrentUser  
         {
-            get
+            get { return _currentUser; }
+            set
             {
-                if (CurrentPCs.Any())
-                {
-                    return CurrentPCs.FirstOrDefault()
-                                     .Value;
-                }
-                return null;
+                _currentUser = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -167,6 +176,7 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
         #region Declarations
 
         public readonly Timer InfoTimer = new Timer(100);
+        private ActorEntity _currentUser;
 
         public bool IsProcessing { get; set; }
 
