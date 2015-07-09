@@ -123,8 +123,12 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
         {
             get
             {
-                return CurrentPCs.FirstOrDefault()
-                                 .Value;
+                if (CurrentPCs.Any())
+                {
+                    return CurrentPCs.FirstOrDefault()
+                                     .Value;
+                }
+                return null;
             }
         }
 
