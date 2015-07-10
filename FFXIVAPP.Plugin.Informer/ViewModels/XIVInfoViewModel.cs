@@ -27,8 +27,11 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 // POSSIBILITY OF SUCH DAMAGE. 
 
+using System;
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Timers;
 using FFXIVAPP.Common.Core.Memory;
@@ -40,12 +43,12 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
         #region Property Bindings
 
         private static XIVInfoViewModel _instance;
-        private ObservableCollection<EnmityEntry> _agroEntries;
-        private ObservableCollection<ActorEntity> _currentMonsters;
-        private ObservableCollection<ActorEntity> _currentNPCs;
-        private ObservableCollection<ActorEntity> _currentPCs;
-        private ActorEntity _currentTarget;
         private ActorEntity _currentUser;
+        private ObservableCollection<EnmityEntry> _agroEntries;
+        private ConcurrentDictionary<UInt32, ActorEntity> _currentMonsters;
+        private ConcurrentDictionary<uint, ActorEntity> _currentNPCs;
+        private ConcurrentDictionary<uint, ActorEntity> _currentPCs;
+        private ActorEntity _currentTarget;
         private ObservableCollection<EnmityEntry> _enmityEntries;
         private ActorEntity _focusTarget;
         private ActorEntity _mouseOverTarget;
@@ -59,7 +62,7 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
 
         public ActorEntity CurrentUser
         {
-            get { return _currentUser ?? (_currentUser = new ActorEntity()); }
+            get { return _currentUser; }
             set
             {
                 _currentUser = value;
@@ -73,6 +76,24 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             set
             {
                 _currentTarget = value;
+                if (value != null)
+                {
+                    CurrentUser = value.CurrentUser;
+                }
+                RaisePropertyChanged();
+            }
+        }
+
+        public ActorEntity PreviousTarget
+        {
+            get { return _previousTarget ?? (_previousTarget = new ActorEntity()); }
+            set
+            {
+                _previousTarget = value;
+                if (value != null)
+                {
+                    CurrentUser = value.CurrentUser;
+                }
                 RaisePropertyChanged();
             }
         }
@@ -93,26 +114,10 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             set
             {
                 _focusTarget = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public ActorEntity PreviousTarget
-        {
-            get { return _previousTarget ?? (_previousTarget = new ActorEntity()); }
-            set
-            {
-                _previousTarget = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public ObservableCollection<EnmityEntry> EnmityEntries
-        {
-            get { return _enmityEntries ?? (_enmityEntries = new ObservableCollection<EnmityEntry>()); }
-            set
-            {
-                _enmityEntries = value;
+                if (value != null)
+                {
+                    CurrentUser = value.CurrentUser;
+                }
                 RaisePropertyChanged();
             }
         }
@@ -127,9 +132,19 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             }
         }
 
-        public ObservableCollection<ActorEntity> CurrentNPCs
+        public ObservableCollection<EnmityEntry> EnmityEntries
         {
-            get { return _currentNPCs ?? (_currentNPCs = new ObservableCollection<ActorEntity>()); }
+            get { return _enmityEntries ?? (_enmityEntries = new ObservableCollection<EnmityEntry>()); }
+            set
+            {
+                _enmityEntries = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ConcurrentDictionary<uint, ActorEntity> CurrentNPCs
+        {
+            get { return _currentNPCs ?? (_currentNPCs = new ConcurrentDictionary<uint, ActorEntity>()); }
             set
             {
                 _currentNPCs = value;
@@ -137,9 +152,9 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             }
         }
 
-        public ObservableCollection<ActorEntity> CurrentMonsters
+        public ConcurrentDictionary<UInt32, ActorEntity> CurrentMonsters
         {
-            get { return _currentMonsters ?? (_currentMonsters = new ObservableCollection<ActorEntity>()); }
+            get { return _currentMonsters ?? (_currentMonsters = new ConcurrentDictionary<uint, ActorEntity>()); }
             set
             {
                 _currentMonsters = value;
@@ -147,9 +162,9 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             }
         }
 
-        public ObservableCollection<ActorEntity> CurrentPCs
+        public ConcurrentDictionary<uint, ActorEntity> CurrentPCs
         {
-            get { return _currentPCs ?? (_currentPCs = new ObservableCollection<ActorEntity>()); }
+            get { return _currentPCs ?? (_currentPCs = new ConcurrentDictionary<uint, ActorEntity>()); }
             set
             {
                 _currentPCs = value;
@@ -161,7 +176,7 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
 
         #region Declarations
 
-        public Timer InfoTimer = new Timer(100);
+        public readonly Timer InfoTimer = new Timer(100);
 
         public bool IsProcessing { get; set; }
 
@@ -170,7 +185,7 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
         public XIVInfoViewModel()
         {
             InfoTimer.Elapsed += InfoTimerOnElapsed;
-            InfoTimer.Start();
+            //InfoTimer.Start();
         }
 
         private void InfoTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)

@@ -1,5 +1,5 @@
 ﻿// FFXIVAPP.Plugin.Informer
-// English.cs
+// Russian.cs
 // 
 // Copyright © 2007 - 2015 Ryan Wilson - All Rights Reserved
 // 
