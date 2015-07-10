@@ -43,6 +43,7 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
         #region Property Bindings
 
         private static XIVInfoViewModel _instance;
+        private ActorEntity _currentUser;
         private ObservableCollection<EnmityEntry> _agroEntries;
         private ConcurrentDictionary<UInt32, ActorEntity> _currentMonsters;
         private ConcurrentDictionary<uint, ActorEntity> _currentNPCs;
@@ -57,6 +58,16 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
         {
             get { return _instance ?? (_instance = new XIVInfoViewModel()); }
             set { _instance = value; }
+        }
+
+        public ActorEntity CurrentUser
+        {
+            get { return _currentUser; }
+            set
+            {
+                _currentUser = value;
+                RaisePropertyChanged();
+            }
         }
 
         public ActorEntity CurrentTarget
@@ -131,16 +142,6 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             }
         }
 
-        public ActorEntity CurrentUser  
-        {
-            get { return _currentUser; }
-            set
-            {
-                _currentUser = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public ConcurrentDictionary<uint, ActorEntity> CurrentNPCs
         {
             get { return _currentNPCs ?? (_currentNPCs = new ConcurrentDictionary<uint, ActorEntity>()); }
@@ -176,7 +177,6 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
         #region Declarations
 
         public readonly Timer InfoTimer = new Timer(100);
-        private ActorEntity _currentUser;
 
         public bool IsProcessing { get; set; }
 
