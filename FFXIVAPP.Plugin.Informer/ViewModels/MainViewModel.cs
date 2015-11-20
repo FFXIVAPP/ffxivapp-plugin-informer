@@ -49,10 +49,6 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
 
         #endregion
 
-        public MainViewModel()
-        {
-        }
-
         #region Loading Functions
 
         #endregion

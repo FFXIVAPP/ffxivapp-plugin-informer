@@ -36,10 +36,6 @@ namespace FFXIVAPP.Plugin.Informer
 {
     internal static class Initializer
     {
-        #region Declarations
-
-        #endregion
-
         /// <summary>
         /// </summary>
         public static void LoadSettings()
@@ -73,5 +69,9 @@ namespace FFXIVAPP.Plugin.Informer
         public static void ApplyTheming()
         {
         }
+
+        #region Declarations
+
+        #endregion
     }
 }
