@@ -29,8 +29,8 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using FFXIVAPP.Common.Core.Memory;
 using FFXIVAPP.IPluginInterface.Events;
+using FFXIVAPP.Memory.Core;
 using FFXIVAPP.Plugin.Informer.ViewModels;
 
 namespace FFXIVAPP.Plugin.Informer
