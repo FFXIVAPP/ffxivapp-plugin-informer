@@ -1,7 +1,7 @@
 ﻿{
     "PluginInfo": {
         "Name": "FFXIVAPP.Plugin.Informer",
-        "Version": "3.0.5810.33871",
+        "Version": "3.0.5812.37250",
         "Files": [
             {
                 "Name": "FFXIVAPP.Plugin.Informer.dll",
