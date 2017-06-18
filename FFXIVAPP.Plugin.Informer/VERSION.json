@@ -1,21 +1,21 @@
 ﻿{
-    "PluginInfo": {
-        "Name": "FFXIVAPP.Plugin.Informer",
-        "Version": "3.0.6134.35659",
-        "Files": [
-            {
-                "Name": "FFXIVAPP.Plugin.Informer.dll",
-                "Location": ""
-            },
-            {
-                "Name": "Logo.png",
-                "Location": ""
-            },
-            {
-                "Name": "PluginInfo.xml",
-                "Location": ""
-            }
-        ],
-		"SourceURI": "https://github.com/Icehunter/ffxivapp-plugin-informer/raw/master/distribution/"
-    }
+  "PluginInfo": {
+    "Name": "FFXIVAPP.Plugin.Informer",
+    "Version": "3.0.6377.38478",
+    "Files": [
+      {
+        "Name": "FFXIVAPP.Plugin.Informer.dll",
+        "Location": ""
+      },
+      {
+        "Name": "Logo.png",
+        "Location": ""
+      },
+      {
+        "Name": "PluginInfo.xml",
+        "Location": ""
+      }
+    ],
+    "SourceURI": "https://github.com/Icehunter/ffxivapp-plugin-informer/raw/master/distribution/"
+  }
 }
