@@ -147,6 +147,12 @@ namespace FFXIVAPP.Plugin.Informer
                 return;
             }
             var targetEntity = targetEntityEvent.TargetEntity;
+
+            if (ActorEntity.CurrentUser != null)
+            {
+                XIVInfoViewModel.Instance.CurrentUser = ActorEntity.CurrentUser;
+            }
+
             XIVInfoViewModel.Instance.EnmityEntries = new ObservableCollection<EnmityEntry>(targetEntity.EnmityEntries ?? new List<EnmityEntry>());
             XIVInfoViewModel.Instance.CurrentTarget = targetEntity.CurrentTarget ?? new ActorEntity();
             XIVInfoViewModel.Instance.MouseOverTarget = targetEntity.MouseOverTarget ?? new ActorEntity();

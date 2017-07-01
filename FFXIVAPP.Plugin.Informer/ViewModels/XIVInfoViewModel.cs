@@ -80,10 +80,6 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             set
             {
                 _currentTarget = value;
-                if (value != null)
-                {
-                    CurrentUser = value.CurrentUser;
-                }
                 RaisePropertyChanged();
             }
         }
@@ -94,10 +90,6 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             set
             {
                 _previousTarget = value;
-                if (value != null)
-                {
-                    CurrentUser = value.CurrentUser;
-                }
                 RaisePropertyChanged();
             }
         }
@@ -118,10 +110,6 @@ namespace FFXIVAPP.Plugin.Informer.ViewModels
             set
             {
                 _focusTarget = value;
-                if (value != null)
-                {
-                    CurrentUser = value.CurrentUser;
-                }
                 RaisePropertyChanged();
             }
         }
