@@ -39,11 +39,17 @@ namespace FFXIVAPP.Plugin.Informer.Properties
 {
     internal class Settings : ApplicationSettingsBase, INotifyPropertyChanged
     {
+        #region Logger
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         private static Settings _default;
 
         public static Settings Default
         {
-            get { return _default ?? (_default = ((Settings) (Synchronized(new Settings())))); }
+            get { return _default ?? (_default = (Settings) Synchronized(new Settings())); }
         }
 
         public override void Save()
@@ -109,7 +115,7 @@ namespace FFXIVAPP.Plugin.Informer.Properties
             }
             catch (Exception ex)
             {
-                Logging.Log(LogManager.GetCurrentClassLogger(), "", ex);
+                Logging.Log(Logger, new LogItem(ex, true));
             }
             RaisePropertyChanged(key);
         }
@@ -169,7 +175,7 @@ namespace FFXIVAPP.Plugin.Informer.Properties
         [DefaultSettingValue("#FF000000")]
         public Color ChatBackgroundColor
         {
-            get { return ((Color) (this["ChatBackgroundColor"])); }
+            get { return (Color) this["ChatBackgroundColor"]; }
             set
             {
                 this["ChatBackgroundColor"] = value;
@@ -182,7 +188,7 @@ namespace FFXIVAPP.Plugin.Informer.Properties
         [DefaultSettingValue("#FF800080")]
         public Color TimeStampColor
         {
-            get { return ((Color) (this["TimeStampColor"])); }
+            get { return (Color) this["TimeStampColor"]; }
             set
             {
                 this["TimeStampColor"] = value;
@@ -195,7 +201,7 @@ namespace FFXIVAPP.Plugin.Informer.Properties
         [DefaultSettingValue("Microsoft Sans Serif, 12pt")]
         public Font ChatFont
         {
-            get { return ((Font) (this["ChatFont"])); }
+            get { return (Font) this["ChatFont"]; }
             set
             {
                 this["ChatFont"] = value;
@@ -208,7 +214,7 @@ namespace FFXIVAPP.Plugin.Informer.Properties
         [DefaultSettingValue("100")]
         public Double Zoom
         {
-            get { return ((Double) (this["Zoom"])); }
+            get { return (Double) this["Zoom"]; }
             set
             {
                 this["Zoom"] = value;
