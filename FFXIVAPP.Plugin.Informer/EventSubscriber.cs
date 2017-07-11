@@ -18,8 +18,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FFXIVAPP.IPluginInterface.Events;
-using FFXIVAPP.Memory.Core;
 using FFXIVAPP.Plugin.Informer.ViewModels;
+using Sharlayan.Core;
 
 namespace FFXIVAPP.Plugin.Informer
 {

@@ -21,7 +21,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Timers;
-using FFXIVAPP.Memory.Core;
+using Sharlayan.Core;
 
 namespace FFXIVAPP.Plugin.Informer.ViewModels
 {
