@@ -35,11 +35,13 @@
     <Grid x:Name="LayoutRoot"
           DataContext="{StaticResource MainViewModel}">
         <TabControl>
-            <TabItem Header="{Binding Locale[informer_PlayerTabHeader],
+            <TabItem
+                Header="{Binding Locale[informer_PlayerTabHeader],
                                       Source={StaticResource PluginViewModel}}">
                 <ScrollViewer>
                     <StackPanel>
-                        <GroupBox Header="{Binding Locale[informer_CurrentPlayerHeader],
+                        <GroupBox
+                            Header="{Binding Locale[informer_CurrentPlayerHeader],
                                                    Source={StaticResource PluginViewModel}}">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -105,7 +107,8 @@
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="{Binding Locale[informer_StatusEntriesHeader],
+                        <GroupBox
+                            Header="{Binding Locale[informer_StatusEntriesHeader],
                                                    Source={StaticResource PluginViewModel}}">
                             <DataGrid x:Name="PlayerStatusEntriesDG"
                                       AutoGenerateColumns="False"
@@ -119,18 +122,20 @@
                                                         Header="{Binding Locale[informer_NameHeader],
                                                                          Source={StaticResource PluginViewModel}}"
                                                         utilities:GridViewSort.PropertyName="StatusName" />
-                                    <DataGridTextColumn Binding="{Binding Duration,
+                                    <DataGridTextColumn
+                                        Binding="{Binding Duration,
                                                                           StringFormat=\{0:F2\}}"
-                                                        Header="{Binding Locale[informer_DurationHeader],
+                                        Header="{Binding Locale[informer_DurationHeader],
                                                                          Source={StaticResource PluginViewModel}}"
-                                                        utilities:GridViewSort.PropertyName="Duration" />
+                                        utilities:GridViewSort.PropertyName="Duration" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="{Binding Locale[informer_AgroTabHeader],
+            <TabItem
+                Header="{Binding Locale[informer_AgroTabHeader],
                                       Source={StaticResource PluginViewModel}}">
                 <TabItem.Resources>
                     <CollectionViewSource x:Key="SortedPlayerEnmityItems"
@@ -165,11 +170,13 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
-            <TabItem Header="{Binding Locale[informer_TargetsTabHeader],
+            <TabItem
+                Header="{Binding Locale[informer_TargetsTabHeader],
                                       Source={StaticResource PluginViewModel}}">
                 <ScrollViewer>
                     <StackPanel>
-                        <GroupBox Header="{Binding Locale[informer_CurrentTargetHeader],
+                        <GroupBox
+                            Header="{Binding Locale[informer_CurrentTargetHeader],
                                                    Source={StaticResource PluginViewModel}}">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -235,7 +242,8 @@
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="{Binding Locale[informer_FocusTargetHeader],
+                        <GroupBox
+                            Header="{Binding Locale[informer_FocusTargetHeader],
                                                    Source={StaticResource PluginViewModel}}">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -301,7 +309,8 @@
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="{Binding Locale[informer_MouseOverTargetHeader],
+                        <GroupBox
+                            Header="{Binding Locale[informer_MouseOverTargetHeader],
                                                    Source={StaticResource PluginViewModel}}">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -367,7 +376,8 @@
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="{Binding Locale[informer_PreviousTargetHeader],
+                        <GroupBox
+                            Header="{Binding Locale[informer_PreviousTargetHeader],
                                                    Source={StaticResource PluginViewModel}}">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -436,7 +446,8 @@
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="{Binding Locale[informer_TargetEnmityTabHeader],
+            <TabItem
+                Header="{Binding Locale[informer_TargetEnmityTabHeader],
                                       Source={StaticResource PluginViewModel}}">
 
                 <TabItem.Resources>
