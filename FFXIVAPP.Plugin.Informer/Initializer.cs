@@ -1,65 +1,44 @@
-﻿// FFXIVAPP.Plugin.Informer ~ Initializer.cs
-// 
-// Copyright © 2007 - 2017 Ryan Wilson - All Rights Reserved
-// 
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Initializer.cs" company="SyndicatedLife">
+//   Copyright(c) 2018 Ryan Wilson &amp;lt;syndicated.life@gmail.com&amp;gt; (http://syndicated.life/)
+//   Licensed under the MIT license. See LICENSE.md in the solution root for full license information.
+// </copyright>
+// <summary>
+//   Initializer.cs Implementation
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Globalization;
-using System.Xml.Linq;
-using FFXIVAPP.Plugin.Informer.Properties;
+namespace FFXIVAPP.Plugin.Informer {
+    using System.Globalization;
+    using System.Xml.Linq;
 
-namespace FFXIVAPP.Plugin.Informer
-{
-    internal static class Initializer
-    {
+    using FFXIVAPP.Plugin.Informer.Properties;
+
+    internal static class Initializer {
         /// <summary>
         /// </summary>
-        public static void LoadSettings()
-        {
-            if (Constants.XSettings != null)
-            {
+        public static void ApplyTheming() { }
+
+        /// <summary>
+        /// </summary>
+        public static void LoadSettings() {
+            if (Constants.XSettings != null) {
                 Settings.Default.Reset();
-                foreach (var xElement in Constants.XSettings.Descendants()
-                                                  .Elements("Setting"))
-                {
+                foreach (XElement xElement in Constants.XSettings.Descendants().Elements("Setting")) {
                     var xKey = (string) xElement.Attribute("Key");
                     var xValue = (string) xElement.Element("Value");
-                    if (String.IsNullOrWhiteSpace(xKey) || String.IsNullOrWhiteSpace(xValue))
-                    {
+                    if (string.IsNullOrWhiteSpace(xKey) || string.IsNullOrWhiteSpace(xValue)) {
                         return;
                     }
-                    if (Constants.Settings.Contains(xKey))
-                    {
+
+                    if (Constants.Settings.Contains(xKey)) {
                         Settings.Default.SetValue(xKey, xValue, CultureInfo.InvariantCulture);
                     }
-                    else
-                    {
+                    else {
                         Constants.Settings.Add(xKey);
                     }
                 }
             }
         }
-
-        /// <summary>
-        /// </summary>
-        public static void ApplyTheming()
-        {
-        }
-
-        #region Declarations
-
-        #endregion
     }
 }
