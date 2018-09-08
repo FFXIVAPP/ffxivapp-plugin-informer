@@ -115,7 +115,7 @@
                                       BorderBrush="{DynamicResource AccentColorBrush}"
                                       BorderThickness="1"
                                       IsReadOnly="True"
-                                      ItemsSource="{Binding CurrentUser.StatusEntries,
+                                      ItemsSource="{Binding CurrentUser.StatusItems,
                                                             Source={StaticResource XIVInfoViewModel}}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding StatusName}"
